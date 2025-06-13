@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: CRUD-Galo # Name of your Spring Boot application
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testegalo # JDBC URL for PostgreSQL
+    username: postgres                             # Database username
+    password: postgress                            # Database password
+    driver-class-name: org.postgresql.Driver       # JDBC driver class for PostgreSQL
+  jpa:
+    hibernate:
+      ddl-auto: update                               # 'none' is safe for production; consider 'update' or 'create-drop' for development
+    properties:
+      hibernate:
+        format_sql: true                           # Format SQL queries for readability in logs
+        jdbc.time_zone: UTC                        # Best practice: set a consistent timezone for JDBC
+    show-sql: true                                 # Show generated SQL queries in logs (Spring Boot property)
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG                       # Log all executed SQL statements
+    org.hibernate.orm.jdbc.bind: TRACE             # Log JDBC parameter binding values (very useful for debugging queries)
+    org.springframework.web: INFO                  # General logging for Spring Web components
+    github.rezzzedev.CRUD.Galo: DEBUG              # Set DEBUG level for your application's packages
