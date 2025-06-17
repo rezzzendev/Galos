@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/testegalo # JDBC URL for PostgreSQL
     username: postgres                             # Database username
-    password: postgress                            # Database password
+    password: postgres                            # Database password
     driver-class-name: org.postgresql.Driver       # JDBC driver class for PostgreSQL
   jpa:
     hibernate:

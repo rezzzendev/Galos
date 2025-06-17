@@ -4,13 +4,11 @@ import github.rezzzedev.CRUD.Galo.model.Galo;
 import github.rezzzedev.CRUD.Galo.service.GaloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/galos")
@@ -33,5 +31,20 @@ public class GaloController {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable("id") Long id, @RequestBody Galo galo) {
+        var idGalo = Long.valueOf(id);
+        Optional<Galo> galoOptional = service.obterPorId(idGalo);
+
+        var galoAtualizado = galoOptional.get();
+        galoAtualizado.setNome(galo.getNome());
+        galoAtualizado.setPeso(galo.getPeso());
+        galoAtualizado.setDescricao(galo.getDescricao());
+
+        service.atualizar(galoAtualizado);
+
+        return ResponseEntity.noContent().build();
     }
 }
