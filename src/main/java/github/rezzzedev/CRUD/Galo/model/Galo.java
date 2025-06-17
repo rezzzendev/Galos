@@ -3,6 +3,9 @@ package github.rezzzedev.CRUD.Galo.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "tb_galo")
 @Data
@@ -21,4 +24,7 @@ public class Galo {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @OneToMany(mappedBy = "galo", cascade = CascadeType.ALL)
+    private List<Carteira> carteiras = new ArrayList<>();
 }
