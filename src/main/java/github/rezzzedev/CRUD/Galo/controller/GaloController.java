@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -46,5 +47,20 @@ public class GaloController {
         service.atualizar(galoAtualizado);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Galo>> pesquisar (@RequestParam String nome) {
+        List<Galo> pesquisa = service.procurar(nome);
+
+        return ResponseEntity.ok(pesquisa);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deletar(@PathVariable("id") Long id) {
+        Optional<Galo> galoOptional = service.obterPorId(id);
+        service.deletar(galoOptional.get());
+
+        return  ResponseEntity.noContent().build();
     }
 }

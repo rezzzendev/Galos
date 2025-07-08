@@ -5,6 +5,7 @@ import github.rezzzedev.CRUD.Galo.repository.GaloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +28,13 @@ public class GaloService {
 
     public Optional<Galo> obterPorId(Long id) {
        return repository.findById(id);
+    }
+
+    public List<Galo> procurar (String nome) {
+        return repository.findByNome(nome);
+    }
+
+    public void deletar (Galo galo) {
+        repository.delete(galo);
     }
 }
