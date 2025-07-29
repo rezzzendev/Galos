@@ -24,7 +24,4 @@ public class Galo {
 
     @Column(name = "descricao")
     private String descricao;
-
-    @OneToMany(mappedBy = "galo", cascade = CascadeType.ALL)
-    private List<Carteira> carteiras = new ArrayList<>();
 }

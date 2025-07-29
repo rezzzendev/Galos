@@ -1,16 +1,13 @@
 package github.rezzzedev.CRUD.Galo.controller;
 
 import github.rezzzedev.CRUD.Galo.dto.GaloDTO;
-import github.rezzzedev.CRUD.Galo.model.Carteira;
 import github.rezzzedev.CRUD.Galo.model.Galo;
 import github.rezzzedev.CRUD.Galo.repository.GaloRepository;
 import github.rezzzedev.CRUD.Galo.service.GaloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,18 +31,6 @@ public class GaloController {
         galo.setNome(dto.getNome());
         galo.setPeso(dto.getPeso());
         galo.setDescricao(dto.getDescricao());
-
-
-        List<Carteira> carteiras = dto.getCarteiras().stream().map(c -> {
-            Carteira carteira = new Carteira();
-            carteira.setNomeCarteira(c.getNomeCarteira());
-            carteira.setSaldo(c.getSaldo());
-            carteira.setTipoConta(c.getTipoConta());
-            carteira.setGalo(galo);
-            return carteira;
-        }).toList();
-
-        galo.setCarteiras(carteiras);
 
         return galoRepository.save(galo);
     }

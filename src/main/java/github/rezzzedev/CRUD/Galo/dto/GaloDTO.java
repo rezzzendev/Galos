@@ -10,5 +10,4 @@ public class GaloDTO {
     private String nome;
     private Integer peso;
     private String descricao;
-    private List<CarteiraDTO> carteiras;
 }
