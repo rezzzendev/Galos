@@ -24,4 +24,12 @@ public class Galo {
 
     @Column(name = "descricao")
     private String descricao;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "tb_galos_galinheiros",
+            joinColumns = @JoinColumn(name = "galo_id"),
+            inverseJoinColumns = @JoinColumn(name = "galinheiro_id")
+    )
+    private List<Galinheiro> galinheiros;
 }

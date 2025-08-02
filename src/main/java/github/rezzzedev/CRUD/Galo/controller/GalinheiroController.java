@@ -3,13 +3,14 @@ package github.rezzzedev.CRUD.Galo.controller;
 import github.rezzzedev.CRUD.Galo.dto.GalinheiroDTO;
 import github.rezzzedev.CRUD.Galo.model.Galinheiro;
 import github.rezzzedev.CRUD.Galo.service.GalinheiroService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @RestController
@@ -33,8 +34,7 @@ public class GalinheiroController {
 
     @DeleteMapping("{id_galinheiro}")
     public ResponseEntity<Void> deletarGalinheiro (@PathVariable("id_galinheiro") Long id) {
-        Optional<Galinheiro> galinheiroLista = galinheiroService.obterPorId(id);
-        galinheiroService.deletar(galinheiroLista.get());
+        galinheiroService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 

@@ -1,7 +1,9 @@
 package github.rezzzedev.CRUD.Galo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_galinheiro")
@@ -18,4 +20,8 @@ public class Galinheiro {
 
     @Column(name = "descricao_galinheiro")
     private String descricaoGalinheiro;
+
+    @ManyToMany(mappedBy = "galinheiros")
+    @JsonIgnore
+    private List<Galo> galos;
 }
